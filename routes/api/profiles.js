@@ -83,6 +83,7 @@ router.post('/',passport.authenticate('jwt',{session:false}),(req,res) => {
 // @access public
 router.get('/handle/:handle',(req,res) => {
   PROFILE.findOne({handle:req.params.handle})
+    .populate('user',['username','avatar'])
     .then(profile => {
       if(!profile){
         res.status(404).json("未找到该用户信息");

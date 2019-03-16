@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="container">
-      班级：15软件开发B班&nbsp;&nbsp;姓名：曲华俊&nbsp;&nbsp;wechat:luluseiipai
+      Copyright &copy; 2019 班级：15软件开发B班&nbsp;&nbsp;姓名：曲华俊&nbsp;&nbsp;wechat:luluseiipai
     </div>
   </div>
 </template>
