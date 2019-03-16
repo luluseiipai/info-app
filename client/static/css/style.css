@@ -1,0 +1,334 @@
+:root{
+  --h1: #1b2f90;
+  --bg: #f9f9f6;
+  --t: 1.5s;
+}
+.body{
+}
+.dog{
+  width: 300px;
+  height: 400px;
+  position: relative;
+  margin-top: 50px;
+}
+.center{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+.forehead{
+  width: 102px;
+  height: 48px;
+  background: #f9f9f6;
+  border-radius: 51px/40px 40px 8px 8px;
+  z-index: 1;
+}
+.face{
+  width: 110px;
+  height: 68px;
+  background: #f9f9f6;
+  border-radius: 50%;
+  top: 20px;
+  z-index: 1;
+}
+.chin{
+  width: 104px;
+  height: 36px;
+  background: #f9f9f6;
+  border-radius: 50%;
+  top: 60px;
+  border-radius: 52px / 0px 0px 36px 36px;
+  z-index: 1;
+}
+.ear{
+  width: 16px;
+  height: 70px;
+  background: #1b2f90;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  transform: translate(-42px,0) rotate(10deg);
+  transform-origin: 50% 0;
+  z-index: 0;
+  animation: rotate 1.5s ease-out infinite;
+}
+.ear.right{
+  transform: scale(-1,1) translate(-26px,0) rotate(10deg);
+  animation: rotate-r 1.5s ease-out infinite;
+}
+.birthmark{
+  width: 30px;
+  height: 36px;
+  background: #1b2f90;
+  border-radius: 15px / 17px 23px 2px 13px;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 10px;
+  transform: translate(17px,0) rotate(-10deg);
+}
+.eye{
+  width: 24px;
+  height: 24px;
+  background: #f9f9f6;
+  border-radius: 12px / 12px 12px 12px 2px;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translate(-44px,0) rotate(10deg);
+  transform-origin: 50% 0;
+  z-index: 2;
+  box-shadow: 1px 0px 0px 0px #000 inset,-1px 0px 5px 1px #ddd;
+  overflow: hidden;
+}
+.eye.right{
+  transform: scale(-1,1) translate(-21px,0) rotate(10deg);
+  box-shadow: 1px 0px 0px 0px #000 inset;
+}
+.pupil{
+  width: 26px;
+  height: 26px;
+  background: #e79101;
+  border-radius: 50%;
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  box-shadow: 0 0 8px 0 #000 inset;
+  animation: translate 1.5s ease-out infinite;
+}
+.pupil:before{
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  animation: translate-r 1.5s ease-out infinite;
+}
+.pupil:after{
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 7px;
+  left: 3px;
+}
+.nose{
+  width: 62px;
+  height: 32px;
+  top: 42px;
+  background: #363035;
+  border-radius: 31px / 10px 10px 22px 22px;
+  z-index: 3;
+}
+.nose:after{
+  content: '';
+  border-radius: 30px / 8px 8px 2px 2px;
+  width: 60px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  top: 1px;
+  transform: translate(-50%,0);
+  background: linear-gradient(10deg,#fff 0%,#fff 8%,#b1aeb1 15%,#b1aeb1 50%,#544d53 100%);
+}
+.nostril{
+  width: 15px;
+  height: 4px;
+  background: linear-gradient(180deg,#000 0%,#363035);
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  top: 19px;
+  left: 50%;
+  transform: translate(-21px,0) rotate(30deg);
+  animation: resize 1.5s ease-out infinite;
+}
+.nostril.right{
+  transform: translate(7px,0) scale(-1,1) rotate(30deg);
+}
+.mouth{
+  width: 68px;
+  height: 26px;
+  background: #671316;
+  border-radius: 34px/ 0px 0px  27px 27px;
+  z-index: 1;
+  box-shadow: 0 0 4px 0 #000 inset;
+  top: 68px;
+  animation: open 1.5s ease-out infinite;
+}
+.mouth:before{
+  content:'';
+  width: 70px;
+  height: 8px;
+  background: #f9f9f6;
+  border-radius: 35px / 0 0 5px 5px;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  z-index: 1;
+}
+.teen{
+  content:'';
+  width: 8px;
+  height: 3px;
+  background: #f9f9f6;
+  border-radius: 4px / 0 0 0 1px;
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translate(-8px,0);
+  z-index: 1;
+}
+.teen.right{
+  transform: scale(-1,1) translate(0px,0);
+  border-right: .5px solid #ddd;
+  z-index: 1;
+}
+.tongue{
+  width: 34px;
+  height: 14px;
+  background: #a2504f;
+  border-radius: 17px / 0 0 7px 7px;
+  box-shadow: 0 0 4px 0 #111 inset;
+  top: 0;
+  z-index: 0;
+  animation: extend 1.5s ease-out infinite;
+}
+.body{
+  width: 66px;
+  height: 70px;
+  background: #f9f9f6;
+  top: 88px;
+  border-radius: 50%;
+}
+.arm{
+  width: 26px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  background: #f9f9f6;
+  border-radius: 13px / 20px 0 14px 20px;
+  transform: translate(-43px,0) rotate(21deg);
+}
+.arm:before{
+  content:'';
+  width: 5px;
+  height: 20px;
+  border-radius: 5px / 10px 0 0 10px;
+  box-shadow: -1px 0 0 0 rgba(200,200,200,.5);
+  position: absolute;
+  right: 6px;
+  top: 14px;
+  transform: rotate(5deg);
+}
+.arm.right{
+  transform: scale(-1,1) translate(-17px,0) rotate(21deg);
+}
+.leg{
+  width: 29px;
+  height: 50px;
+  background: linear-gradient(-85deg,#ddd 0%, #ddd 5%, #f9f9f6 20%,#f9f9f6 100%);
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  border-radius: 15px /  5px 5px 15px 45px;
+  transform: translate(-32px,0);
+}
+.leg.right{
+  transform: scale(-1,1) translate(-3px,0);
+}
+.foot{
+  width: 29px;
+  height: 15px;
+  background: linear-gradient(-120deg,#ddd 0%, #ddd 10%, #f9f9f6 30%,#f9f9f6 100%);
+  position: absolute;
+  left: 2px;
+  bottom: -8px;
+  border-radius: 15px / 12px 12px 5px 5px;
+}
+.belly{
+  width: 60px;
+  height: 36px;
+  background: linear-gradient(0deg,#ddd 0%,#f9f9f6 20%,#f9f9f6 100%);
+  border-radius: 30px / 0 0 36px 36px;
+  top: 34px;
+  z-index: 2;
+}
+
+@keyframes rotate{
+  form{
+    transform: translate(-42px,0) rotate(10deg);
+  }
+  50%{
+    transform: translate(-42px,0) rotate(15deg);
+  }
+  to{
+    transform: translate(-42px,0) rotate(10deg);
+  }
+}
+@keyframes rotate-r{
+  form{
+    transform: scale(-1,1) translate(-26px,0) rotate(10deg);
+  }
+  50%{
+    transform: scale(-1,1) translate(-26px,0) rotate(15deg);
+  }
+  to{
+    transform: scale(-1,1) translate(-26px,0) rotate(10deg);
+  }
+}
+@keyframes translate{
+  form{
+    left: 3px;
+  }
+  50%{
+    left: 6px;
+  }
+  to{
+    left: 3px;
+  }
+}
+@keyframes resize{
+  form{
+    height: 4px;
+  }
+  50%{
+    height: 3px;
+  }
+  to{
+    height: 4px;
+  }
+}
+@keyframes extend{
+  form{
+    height: 14px;
+  }
+  50%{
+    height: 23px;
+  }
+  to{
+    height: 14px;
+  }
+}
+@keyframes open{
+  form{
+    height: 27px;
+    border-radius: 34px/ 0px 0px  27px 27px;
+  }
+  50%{
+    height: 20px;
+    border-radius: 34px/ 0px 0px  20px 20px;
+  }
+  to{
+    height: 27px;
+    border-radius: 34px/ 0px 0px  27px 27px;
+  }
+}
