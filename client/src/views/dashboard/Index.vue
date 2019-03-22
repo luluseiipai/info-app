@@ -11,7 +11,7 @@
         </div>
         <el-button class='fr' type="primary" size="small" icon="el-icon-refresh" @click="refresh" round>数据刷新</el-button>
       </div>
-      <el-tabs tab-position="left" class="tab-list" v-model="activeName">
+      <el-tabs tab-position="top" class="tab-list" v-model="activeName">
         <el-tab-pane label="教育经历" name="first">
           <app-education @update="refresh" :education='profile.education'></app-education>
         </el-tab-pane>

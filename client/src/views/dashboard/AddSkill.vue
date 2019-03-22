@@ -80,16 +80,16 @@ export default {
       },
       options:[{
         label:'了解',
-        value:'了解'
+        value:'25'
       },{
         label:'熟悉',
-        value:'熟悉'
+        value:'50'
       },{
         label:'熟练',
-        value:'熟练'
+        value:'75'
       },{
         label:'精通',
-        value:'精通'
+        value:'100'
       }]
     }
   },

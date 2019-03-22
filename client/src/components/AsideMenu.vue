@@ -10,8 +10,8 @@
           :unique-opened="true"
           active-text-color="#ffd04b">
           <div v-if="profile" class="user">
-            姓名: {{profile.name}}<br><br>
-            身份: {{profile.identity == 'student' ? '学生' : '教师'}}
+            用户名: {{profile.name}}<br><br>
+            身份: {{user.identity == 'student' ? '学生' : '教师'}}
           </div>
           <div v-if="!profile" class="user">
             <el-button type='primary' @click='createProfile' circle>创建个人信息</el-button>
@@ -119,6 +119,9 @@ export default {
   computed:{
     CurrentPath(){
       return this.$route.path.replace('/','');
+    },
+    user(){
+      return this.$store.getters.user;
     }
   }
 }

@@ -114,7 +114,7 @@ router.get('/all',(req,res) => {
   PROFILE.find()
     .populate('user',['username','avatar'])
     .then(profile => {
-      if(!profile) res.status(404).json({error:true,msg:"没有任何用户信息!"});
+      if(!profile) res.status(404).json("没有任何用户信息!");
       res.status(200).json(profile);
     })
     .catch(err => res.status(400).json('oops,something got wrong'));

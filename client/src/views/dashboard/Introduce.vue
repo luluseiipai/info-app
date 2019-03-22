@@ -1,5 +1,12 @@
 <template>
   <div class="introduce">
+    <div class='bread'>
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ name:'Dashboard_Index' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>关于我们</el-breadcrumb-item>
+        <el-breadcrumb-item>网站介绍</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <div class="container">
       <article>
         <h1 class="title">网站介绍</h1>
@@ -20,7 +27,7 @@ export default {
         "该作品的有Token权限认证，请求响应拦截，token过期处理，常用组件封装，一键生成简历为pdf文件等功能",
         "本作品为本人<span style='font-weight:bold;color: #303133;'>曲华俊</span>设计的毕业设计作品<span style='font-weight:bold;color: #303133;'>大学生个人信息管理系统</span>，希望我开发的这款作品能够在应届毕业生的求职路上搭一把手。",
         "前端 -- 技术栈 & 插件：",
-        "HTML(5)、CSS(3)、Javascript(es6&7)、Vue2.x、Vue-router、Vuex、Vue-cli、axios、webpack、git、jwt-decode、echarts、element-ui、",
+        "HTML(5)、CSS(3)、Javascript(es6&7)、Vue2.x、Vue-router、Vuex、Vue-cli、axios、webpack、git、jwt-decode、echarts、element-ui、vue-clipboard2、vue-quill-editor、vue-canvas-nest",
         "后端 -- 技术栈 & 插件：",
         "node.js、express、body-parser、concurrently、gravatar、jsonwebtoken、passport、passport-jwt",
         "数据库：",
@@ -44,6 +51,9 @@ export default {
 .introduce{
   margin-top: -10px;
   overflow: hidden;
+}
+.bread{
+  padding: 30px 20px 20px;
 }
 .container{
   margin: 50px auto;

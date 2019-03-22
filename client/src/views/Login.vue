@@ -7,11 +7,9 @@
           <el-row>
             <el-col :span="24">
               <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="loginForm">
-                <el-tooltip class="item" effect="dark" content="我们使用了gravatar全球公认头像，如果需要有头像显示，请使用在gravatar注册的邮箱" placement="top">
-                  <el-form-item label="邮箱:" prop="email">
-                    <el-input type='email' v-model="loginForm.email" placeholder="请输入邮箱" autocomplete="off"></el-input>
-                  </el-form-item>
-                </el-tooltip>
+                <el-form-item label="邮箱:" prop="email">
+                <el-input type='email' v-model="loginForm.email" placeholder="请输入邮箱" autocomplete="off"></el-input>
+                </el-form-item>
                 <el-form-item label="密码:" prop="password">
                   <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" autocomplete="off"></el-input>
                 </el-form-item>

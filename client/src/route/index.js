@@ -5,6 +5,9 @@ import Router from 'vue-router';
 import Home from '../views/Home.vue';
 import Dashboard from '../views/Dashboard.vue';
 import Profile from '../views/profile/Profile.vue';
+import Profiles from '../views/Profiles.vue';
+import Forum from '../views/Forum/Forum.vue';
+
 
 Vue.use(Router);
 
@@ -30,7 +33,9 @@ const route = new Router({
         {path:'contactus',name:'ContactUs',component:() => import('../views/dashboard/ContactUs.vue')}
       ]
     },
-    {path:'/profile/:handle',name:'Profile',component:Profile}
+    {path:'/profile/:handle',name:'Profile',component:Profile},
+    {path:'/profiles',name:'Profiles',component:Profiles},
+    {path:'/forum',name:'Forum',component:Forum}
   ]
 });
 

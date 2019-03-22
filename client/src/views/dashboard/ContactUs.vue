@@ -1,5 +1,12 @@
 <template>
   <div class="contactUs">
+    <div class='bread'>
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ name:'Dashboard_Index' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>关于我们</el-breadcrumb-item>
+        <el-breadcrumb-item>联系我们</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <div class="container">
       <article>
         <h1 class="title">联系我们</h1>
@@ -39,6 +46,9 @@ export default {
 .contactUs{
   margin-top: -10px;
   overflow: hidden;
+}
+.bread{
+  padding: 30px 20px 20px;
 }
 .container{
   margin: 50px auto;

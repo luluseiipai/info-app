@@ -1,7 +1,7 @@
 <template>
   <div class="profileBio">
     <div v-if="profile.bio" class="bio">
-      <h1 class='title'>个人简介</h1>
+      <h1 class='title'>个人简介<i class="fa fa-newspaper-o"></i></h1>
       <div class='content'>{{profile.bio}}</div>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
   transition: .5s;
 }
 .bio:hover{
-  box-shadow:  0 -2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow:  0 -4px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .bio .title{
   font-size: 32px;

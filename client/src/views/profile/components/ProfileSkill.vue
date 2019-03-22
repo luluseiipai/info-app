@@ -1,7 +1,7 @@
 <template>
   <div class="profileSkill">
-    <div v-if="profile && profile.skills" class="skills">
-      <h1 class='title'>个人技能</h1>
+    <div v-if="skills" class="skills">
+      <h1 class='title'>个人技能 <i class="fa fa-line-chart"></i></h1>
       <div class='content'>
         <div id="myChart" class="myChart" :style="{width: '800px', height: '350px'}"></div>
       </div>
@@ -17,26 +17,28 @@ export default {
     return {}
   },
   props:{
-    profile:Object
+    skills:Array
   },
   mounted(){
-    this.drawLine();
+    this.$nextTick(()=>{
+        this.drawLine();
+    })
   },
   methods:{
     drawLine(){
-      let nameArr = this.profile.skills.map(item => item.skillName);
-      let proficientArr = this.profile.skills.map(item => item.proficient);
+      let nameArr = this.skills.map(item => item.skillName);
+      let proficientArr = this.skills.map(item => item.proficient);
+    //   console.log(nameArr)
+    //   console.log(proficientArr)
       // 基于准备好的dom，初始化echarts实例
       let myChart = echarts.init(document.getElementById('myChart'))
-      // 绘制图表
-      myChart.setOption({
+      let options = {
         title: { text: '技能掌握熟练度' },
         tooltip: {},
         xAxis: {
           data: nameArr
         },
         yAxis: {
-          data: ['入门','熟悉',"熟练","精通"]
         },
         series: [{
           name: '熟练度',
@@ -48,8 +50,10 @@ export default {
             }
           }
         }]
-      }); 
-        
+      }
+      // console.log(options)
+      // 绘制图表
+      myChart.setOption(options); 
     }
   }
 }

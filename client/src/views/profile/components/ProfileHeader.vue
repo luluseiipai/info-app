@@ -15,7 +15,7 @@
         <i class="fa fa-birthday-cake"></i>
         {{profile.birth}}
       </div>
-      <div class="position">
+      <div v-if="profile.position" class="position">
         <i class="fa fa-envelope-o"></i>
         {{profile.position}}
       </div>
@@ -29,12 +29,8 @@
         <el-tooltip v-if="profile.website" class="item" effect="dark" content="个人网站" placement="bottom-start">
           <a :href="profile.website" target="_blank" rel="noopener noreferrer"><i class="fa fa-internet-explorer"></i></a>
         </el-tooltip>
-        <el-tooltip v-if="profile.link.qq" class="item" effect="dark" :content="`QQ：${profile.link.qq}`" placement="bottom">
-          <a href="javascript:void(0)" target="_blank" rel="noopener noreferrer"><i class="fa fa-qq"></i></a>
-        </el-tooltip>
-        <el-tooltip v-if="profile.link.wechat" class="item" effect="dark" :content="`微信：${profile.link.wechat}`" placement="bottom-end">
-          <a href="javascript:void(0)" target="_blank" rel="noopener noreferrer"><i class="fa fa-wechat"></i></a>
-        </el-tooltip>
+        <div v-if="profile.link.qq" class="item"><i class="fa fa-qq"></i></div>
+        <div v-if="profile.link.wechat" class="item"><i class="fa fa-wechat"></i></div>
       </div>
     </div>
   </div>
@@ -91,19 +87,28 @@ export default {
   font-size: 26px;
   margin: 0 5px;
 }
-.header > div:not(.link):not(.logo):not(.name):hover{
-  -webkit-transform: scale(2);
-  -moz-transform: scale(2);
-  -o-transform: scale(2);
-  transform: scale(2);
+.header .link .item{
+  display: inline-block;
 }
-.header .link a i{
+.header .link .item i{
+  font-size: 26px;
+  margin: 0 5px;
+}
+.header > div:not(.link):not(.logo):not(.name):hover{
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+}
+.header .link a i,
+.header .link .item i{
   -webkit-transition: .5s;
   -moz-transition: .5s;
   -o-transition: .5s;
   transition: .5s;
 }
-.header .link a:hover i{
+.header .link a:hover i,
+.header .link .item:hover i{
   -webkit-transform: scale(1.5);
   -moz-transform: scale(1.5);
   -o-transform: scale(1.5);

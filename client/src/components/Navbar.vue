@@ -7,6 +7,9 @@
           <span class="title">大学生个人信息管理系统</span>
         </router-link>
       </div>
+      <div class="profiles">
+        <router-link :to="{name:'Profiles'}"><i class="fa fa-group"></i> 校友</router-link>
+      </div>
       <div v-show="isLogin" class="user">
         <div class="userinfo">
           <img :src="user.avatar" class="avatar">
@@ -34,6 +37,9 @@
       <div v-show="isLogin" class="dashboard">
         <router-link :to="{name:'Dashboard_Index'}">Dashboard</router-link>
       </div>
+      <div class="forum">
+          <router-link :to="{name:'Forum'}">讨论区</router-link>
+      </div>
     </div>
   </nav>
 </template>
@@ -58,7 +64,7 @@ export default {
       }
     },
     userInfo(){
-      this.$router.push({name:'UserInfo'});
+      this.$router.push({name:'Profile',params:{handle:this.user.username}});
     },
     logout(){
       this.$store.dispatch('clearCurrentState');
@@ -105,15 +111,24 @@ export default {
 .title:hover{
   color: #e7e8f0;
 }
+.profiles{
+  float: left;
+  line-height: 60px;
+  margin-left: 15px;
+  padding: 0 5px;
+}
+.forum{
+    float: right;
+    line-height: 60px;
+    margin-right: 15px;
+    padding: 0 5px;
+}
 .dashboard{
   float: right;
   line-height: 60px;
   margin-right: 15px;
   padding: 0 5px;
   border-radius: 10px;
-}
-.dashboard a{
-  color: #fff;
 }
 .user{
   float: right;
@@ -138,6 +153,13 @@ export default {
 }
 .text > p:nth-child(2){
   color: #56cdfc;
+}
+a{
+  color: #ccc;
+}
+a:hover,
+a.active{
+  color: #fff;
 }
 .el-dropdown-link{
   color: #fff;
