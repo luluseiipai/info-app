@@ -274,12 +274,12 @@ router.delete('/reward/:r_id',passport.authenticate('jwt',{session:false}),(req,
 // $route  delete /api/profiles/:id
 // @desc   删除个人用户
 // @access private
-router.delete('/:id',passport.authenticate('jwt',{session:false}),(req,res) => {
-  PROFILE.findOneAndRemove({user:req.params.id})
+router.delete('/',passport.authenticate('jwt',{session:false}),(req,res) => {
+  PROFILE.findOneAndRemove({user:req.user.id})
   .then(() => {
-    USER.findOneAndRemove({_id:req.params.id})
+    USER.findOneAndRemove({_id:req.user.id})
       .then(() => {
-        res.status(200).json({success:true,msg:"delete complete"});
+        res.status(200).json("delete complete");
       });
   })
   .catch(err => res.status(400).json('oops,something got wrong'));

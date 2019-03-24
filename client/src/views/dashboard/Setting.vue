@@ -21,7 +21,6 @@
             <el-form-item label="确认新密码" prop="checkNewPassword">
               <el-input type="password" v-model="ruleForm.checkNewPassword" auto-complete="off"></el-input>
             </el-form-item>
-            
             <el-form-item>
               <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
               <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -30,7 +29,9 @@
         </el-tab-pane>
         <el-tab-pane name='second'>
           <span slot="label"><i class="fa fa-times-circle"></i> 注销账号</span>
-          注销账号
+          <div class="container">
+            <el-button type='danger' @click="deleteAcc">注销账号</el-button>
+          </div>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -90,6 +91,18 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    deleteAcc(){
+      this.$axios.delete('/api/profiles')
+        .then(res => {
+          this.$message({
+            message:'账户注销成功',
+            type:'success'
+          });
+          this.$store.dispatch('clearCurrentState');
+          localStorage.removeItem('eleToken');
+          this.$router.push('/login');
+        }).catch(err => this.$message.error(err.response.data));
     }
   }
 }
