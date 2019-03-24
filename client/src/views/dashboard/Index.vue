@@ -66,10 +66,7 @@ export default {
 
 <style scoped>
 .index{
-  width: 1200px;
-  margin: 0 auto;
   background: #fff;
-  border-radius: 10px;
 }
 .bread{
   padding: 20px;
@@ -107,6 +104,11 @@ export default {
 }
 .deleteAccount{
     margin-top: 20px;
+}
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 @-webkit-keyframes noData{
   from{font-size: 24px;}

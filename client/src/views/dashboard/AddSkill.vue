@@ -9,7 +9,7 @@
         </el-breadcrumb>
       </div>
       <el-row>
-        <el-col class='ml-10p' :lg="8" :md="12" :sm="12" :xs="12">
+        <el-col class='ml-10p' :span="12">
           <div class="title">添加个人技能</div>
           <div class="tips">*为必填</div>
           <el-col :span="24" class='formBar'>
@@ -18,14 +18,18 @@
                 <el-input v-model="ruleForm.skillName" placeholder="请输入技能名称"></el-input>
               </el-form-item>
               <el-form-item label="熟练度:" prop="proficient">
-                <el-select v-model="ruleForm.proficient" placeholder="请选择技能熟练度">
+                <!-- <el-select v-model="ruleForm.proficient" placeholder="请选择技能熟练度">
                   <el-option
                     v-for="item in options"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
                   </el-option>
-                </el-select>
+                </el-select> -->
+                <el-rate
+                  v-model="ruleForm.proficient"
+                  :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+                </el-rate>
               </el-form-item>
               <div class="moreGroup">
                 <div class="moreGroupItem" v-for="(item, index) in ruleForm.moreSkill" :key="index">
@@ -33,19 +37,23 @@
                     <el-input v-model="item.skillName" placeholder='请输入技能名' ></el-input>
                   </el-form-item>
                   <el-form-item label="熟练度:" :prop="'moreSkill.' + index + '.proficient'" :rules="rules.proficient">
-                    <el-select v-model="item.proficient" placeholder="请选择技能熟练度">
+                    <!-- <el-select v-model="item.proficient" placeholder="请选择技能熟练度">
                       <el-option
                         v-for="subItem in options"
                         :key="subItem.value"
                         :label="subItem.label"
                         :value="subItem.value">
                       </el-option>
-                    </el-select>
+                    </el-select> -->
+                     <el-rate
+                      v-model="item.proficient"
+                      :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+                    </el-rate>
                   </el-form-item>
                   <el-button type='danger' @click="removeskill(item,index)" round>删除</el-button>
                 </div>
               </div>
-              <el-form-item>
+              <el-form-item class='action'>
                 <el-button @click='addskill' type='warning' round>添加</el-button>
                 <el-button @click='initskill' round>重置</el-button>
               </el-form-item>
@@ -62,12 +70,12 @@
 
 <script>
 export default {
-  name: 'addExperience',
+  name: 'addSkill',
   data(){
     return {
       ruleForm:{
         skillName:'',
-        proficient:'',
+        proficient:null,
         moreSkill:[]
       },
       rules:{
@@ -79,18 +87,18 @@ export default {
         ]
       },
       options:[{
-        label:'了解',
-        value:'25'
-      },{
-        label:'熟悉',
-        value:'50'
-      },{
-        label:'熟练',
-        value:'75'
-      },{
-        label:'精通',
-        value:'100'
-      }]
+          label:'了解',
+          value:'25'
+        },{
+          label:'熟悉',
+          value:'50'
+        },{
+          label:'熟练',
+          value:'75'
+        },{
+          label:'精通',
+          value:'100'
+        }]
     }
   },
   computed:{
@@ -98,7 +106,7 @@ export default {
   },
   methods:{
     addskill(){
-      this.ruleForm.moreSkill.push({skillName:'',proficient:''});
+      this.ruleForm.moreSkill.push({skillName:'',proficient:null});
     },
     removeskill(item,index){
       this.ruleForm.moreSkill.splice(index,1);
@@ -155,16 +163,17 @@ export default {
   font-size: 12px;
   margin: 5px;
 }
+.el-form-item{
+  margin-bottom: 10px;
+}
 .ml-10p{
   margin-left: 20%;
 }
-.untilNow{
-  color: #606266;
-  font-size: 14px;
+.el-rate{
+  line-height: 40px;
 }
-.el-form-item:not(:last-child){
-  display: inline-block;
-  margin-bottom: 20px;
+.action{
+  margin-top: 20px;
 }
 .submit{
   width: 50%;

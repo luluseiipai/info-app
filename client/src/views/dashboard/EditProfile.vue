@@ -62,12 +62,12 @@
                   inactive-text="不联系">
                 </el-switch>
               </el-form-item>
-              <div class="linkGroup" v-show="linkSwitch">
+              <div class="linkGroup" v-if="linkSwitch">
                 <el-form-item label="QQ:" prop="qq">
-                  <el-input v-model.number="ruleForm.qq" placeholder="请输入QQ号"></el-input>
+                  <el-input v-if="ruleForm.link" v-model.number="ruleForm.link.qq" placeholder="请输入QQ号"></el-input>
                 </el-form-item>
                 <el-form-item label="Wechat:" prop="wechat">
-                  <el-input v-model="ruleForm.wechat" placeholder="请输入您的微信号"></el-input>
+                  <el-input v-if="ruleForm.link" v-model="ruleForm.link.wechat" placeholder="请输入您的微信号"></el-input>
                 </el-form-item>
               </div>
               <el-form-item>
@@ -173,18 +173,21 @@ export default {
       });
     },
     getProfile(){
-      let profile = this.$store.getters.profile;
-      profile.location = profile.location ? profile.location : [];
-      profile.position = profile.position ? profile.position : '';
-      profile.bio = profile.bio ? profile.bio : '';
-      profile.website = profile.website ? profile.website : '';
-      profile.githubName = profile.githubName ? profile.githubName : '';
-      profile.qq = profile.link.qq ? profile.link.qq : '';
-      profile.wechat = profile.link.wechat ? profile.link.wechat : '';
-      if(profile.qq || profile.wechat){
-        this.linkSwitch = true;
-      }
-      this.ruleForm = profile;
+      // let profile = this.$store.getters.profile;
+      this.$axios.get('/api/profiles')
+        .then(res => {
+          // console.log(res.data);
+          let profile = res.data;
+          this.$store.dispatch('setProfile',profile);
+          if(profile.link.qq || profile.link.wechat){
+            this.linkSwitch = true;
+          }
+          this.ruleForm = profile;
+        })
+        .catch(err => {
+          this.$message.error(err.response.data);
+          this.$store.dispatch('setProfile',{});
+        });
     }
   },
   mounted(){

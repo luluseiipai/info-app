@@ -11,6 +11,10 @@ const forumSchema = new Schema({
     type: String,
     required: true
   },
+  title:{ // 标题
+    type: String,
+    required: true
+  },
   name:{ // 昵称
     type: String
   },

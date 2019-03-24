@@ -32,6 +32,9 @@
                   <el-option label="学生" value="student"></el-option>
                 </el-select>
                 </el-form-item>
+                <el-form-item v-if="checkInput" label='内部码：' prop="check">
+                  <el-input type='text' v-model="checkVal" placeholder="请输入内部码：" autocomplete="off"></el-input>
+                </el-form-item>
                 <el-form-item>
                   <el-button id="registerBtn" type="primary" :disabled="valid" @click.prevent="submitForm('registerForm')">注册</el-button>
                   <el-button @click="resetForm('registerForm')">重置</el-button>
@@ -60,9 +63,20 @@ export default {
         callback();
       }
     };
+    let check = (rule, value, callback) => {
+      if(!this.checkVal) callback(new Error('内部码不能为空'));
+      if(this.checkVal != 'admin'){
+        callback(new Error('内部码错误，请重新输入或选择学生身份'));
+      }else{
+        this.active +=20;
+        callback();
+      }
+    };
     return {
       active:0,
       valid:true,
+      checkInput:false,
+      checkVal:'',
       registerForm:{
         email:'',
         username:'',
@@ -94,6 +108,19 @@ export default {
           {required:true,message:'身份不能为空',trriger:'change'},
           {validator:progressCheck,trigger:'change'}
         ],
+        check:[
+          {validator:check,trigger:'blur'}
+        ]
+      }
+    }
+  },
+  watch:{
+    'registerForm.identity'(newVal,oldVal){
+      if(newVal == 'teacher'){
+        this.checkInput = true;
+        this.active -=20;
+      }else{
+        this.checkInput = false;
       }
     }
   },

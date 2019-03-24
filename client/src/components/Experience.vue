@@ -17,7 +17,7 @@
           prop='title'
           label='头衔'
           align='center'
-          width='250'>
+          width='150'>
         </el-table-column>
         <el-table-column
           prop='company'
@@ -29,7 +29,7 @@
           prop='location'
           label='具体地址'
           align='center'
-          width='400'>
+          width='300'>
         </el-table-column>
         <el-table-column
           label='时间'

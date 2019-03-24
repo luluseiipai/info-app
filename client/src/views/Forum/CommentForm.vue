@@ -2,13 +2,7 @@
   <div class="postForm">
     <div class="wrap">
       <div class="title clearfix">
-        <div class="text">发帖</div>
-        <el-input
-          placeholder="请输入标题"
-          prefix-icon='el-icon-edit-outline'
-          v-model="title"
-          clearable>
-        </el-input>
+        <div class="text">评论</div>
       </div>
       <div class="editor">
          <quill-editor ref="myTextEditor"
@@ -42,7 +36,6 @@ export default {
   name:'postForm',
   data(){
     return {
-      title:'',
       content:'',
       editorOption:{
         modules:{
@@ -66,31 +59,30 @@ export default {
       isAnonymous:false
     }
   },
+  props:{
+    post_id:String
+  },
   mounted() {
     addQuillTitle();
   },
   methods:{
     post(){
       let name = this.isAnonymous ? '匿名' : this.$store.getters.user.username;
-      if(!this.title || !this.content){
+      if(!this.content){
         this.$message.error('标题或内容不能为空，请重新输入');
         return;
-      }else if(this.content > 20){
-        this.$message.error('帖子标题不能大于20个字');
-        return;
       }
-      const newPost = {
-        title:this.title,
+      const newComment = {
         text:this.content,
         name
       }
       this.title = '';
       this.content = '';
       this.isAnonymous = false;
-      this.$axios.post('/api/forums',newPost)
+      this.$axios.post(`/api/forums/comment/${this.post_id}`,newComment)
         .then(res => {
           this.$message({
-            message:'帖子发送成功',
+            message:'评论成功',
             type:'success'
           })
           this.$emit('update');
@@ -137,10 +129,6 @@ export default {
   font-size: 24px;
   float: left;
   margin: 0 20px;
-}
-.title .el-input{
-  width: 500px;
-  font-size: 18px;
 }
 .editor{
   background: #fff;

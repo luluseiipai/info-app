@@ -96,4 +96,29 @@ router.get('/current',passport.authenticate('jwt',{session:false}),(req,res) => 
   });
 });
 
+// $route   Post api/users/reset_password
+// @desc    更改密码
+// @access  private
+router.post('/reset_password',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  USER.findById(req.user.id)
+    .then(user => {
+      bcrypt.compare(req.body.oldPassword,user.password)
+        .then(isMatch => {
+          if(isMatch){
+            bcrypt.genSalt(saltRounds, function(err, salt) {
+              bcrypt.hash(req.body.newPassword, salt, function(err, hash) {
+                if(err) throw err;
+                user.password = hash;
+                user.save()
+                  .then(user => res.json(user))
+                  .catch(err => console.log(err));
+              });
+            });
+          }else{
+            res.status(400).json("旧密码错误");
+          }
+        })
+    }).catch(err => res.status(404).json("没有该用户"))
+});
+
 module.exports = router;

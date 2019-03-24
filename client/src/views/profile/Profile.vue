@@ -11,7 +11,7 @@
     <!-- 技能 -->
     <app-profileSkill v-if="profile && profile.skills.length > 0" :skills="profile.skills"></app-profileSkill>
     <!-- 经历 -->
-    <app-profileExtra v-if="profile && (profile.rewards.length > 0 || profile.education.length > 0 || profile.experience).length > 0" 
+    <app-profileExtra v-if="profile && (profile.rewards.length > 0 || profile.education.length > 0 || profile.experience.length > 0)" 
     :rewards="profile.rewards" :education="profile.education" :experience="profile.experience"></app-profileExtra>
     <!-- github仓库 -->
     <app-profileGithub v-if="profile" :profile="profile"></app-profileGithub>

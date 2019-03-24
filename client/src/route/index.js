@@ -29,13 +29,15 @@ const route = new Router({
         {path:'addexperience',name:'AddExperience',component:() => import('../views/dashboard/AddExperience.vue')},
         {path:'addskill',name:'AddSkill',component:() => import('../views/dashboard/AddSkill.vue')},
         {path:'addreward',name:'AddReward',component:() => import('../views/dashboard/AddReward.vue')},
+        {path:'setting',name:'Setting',component:() => import('../views/dashboard/Setting.vue')},
         {path:'introduce',name:'Introduce',component:() => import('../views/dashboard/Introduce.vue')},
         {path:'contactus',name:'ContactUs',component:() => import('../views/dashboard/ContactUs.vue')}
       ]
     },
     {path:'/profile/:handle',name:'Profile',component:Profile},
     {path:'/profiles',name:'Profiles',component:Profiles},
-    {path:'/forum',name:'Forum',component:Forum}
+    {path:'/forum',name:'Forum',component:Forum},
+    {path:'/forum/:id',name:'Post',component:() => import('../views/Forum/Post.vue')}
   ]
 });
 

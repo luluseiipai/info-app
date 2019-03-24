@@ -6,12 +6,12 @@
         <div class="post-item"
         v-for="(item, index) in posts" :key="index">
           <div class="post">
-            {{index}}
+            <app-postShow :data="item"></app-postShow>
           </div>
         </div>
       </div>
       <div class="post-form">
-        <app-postForm></app-postForm>
+        <app-postForm @update='getData'></app-postForm>
       </div>
       <vue-canvas-nest></vue-canvas-nest>
     </div>
@@ -21,6 +21,7 @@
 <script>
 import PostForm from './PostForm';
 import vueCanvasNest from 'vue-canvas-nest'
+import PostShow from './PostShow';
 export default {
   name:'forum',
   data(){
@@ -30,6 +31,7 @@ export default {
   },
   components:{
     'app-postForm':PostForm,
+    'app-postShow':PostShow,
     vueCanvasNest
   },
   mounted(){
@@ -37,7 +39,11 @@ export default {
   },
   methods:{
     getData(){
-      this.$axios.get()
+      this.$axios.get('/api/forums/all')
+        .then(res => {
+          // console.log(res.data);
+          this.posts = res.data;
+        })
     }
   }
 }

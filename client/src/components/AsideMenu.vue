@@ -62,9 +62,15 @@
           </el-submenu>
           <el-submenu :disabled="!profile" index='3'>
             <template slot="title">
-              <i class="el-icon-more-outline"></i>
+              <i class="el-icon-goods"></i>
               <span>功能</span>
             </template>
+            <router-link :to="{name: 'Setting'}">
+              <el-menu-item index='dashboard/setting'>
+                <i class="fa fa-cog"></i>
+                <span slot="title">设置</span>
+              </el-menu-item>
+            </router-link>
           </el-submenu>
           <el-submenu :disabled="!profile" index='4'>
             <template slot="title">
