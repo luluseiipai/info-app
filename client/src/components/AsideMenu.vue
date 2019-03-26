@@ -71,6 +71,12 @@
                 <span slot="title">设置</span>
               </el-menu-item>
             </router-link>
+            <router-link :to="{name: 'Resume'}">
+              <el-menu-item index='dashboard/resume'>
+                <i class="fa fa-file-pdf-o"></i>
+                <span slot="title">简历</span>
+              </el-menu-item>
+            </router-link>
           </el-submenu>
           <el-submenu :disabled="!profile" index='4'>
             <template slot="title">

@@ -20,7 +20,7 @@ router.get('/test',(req,res) => {
 // @access private
 router.get('/',passport.authenticate('jwt',{session:false}),(req,res) => {
   PROFILE.findOne({user:req.user.id})
-    .populate('user',['username','avatar']) // 外键连接user表获取用户名和头像
+    .populate('user',['username','avatar','email']) // 外键连接user表获取用户名和头像
     .then(profile => {
       if(!profile){
         res.status(404).json("用户未创建个人信息");

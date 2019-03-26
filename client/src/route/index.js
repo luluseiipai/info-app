@@ -8,7 +8,6 @@ import Profile from '../views/profile/Profile.vue';
 import Profiles from '../views/Profiles.vue';
 import Forum from '../views/Forum/Forum.vue';
 
-
 Vue.use(Router);
 
 const route = new Router({
@@ -20,7 +19,7 @@ const route = new Router({
     {path:'/login',name:'Login',component:() => import('../views/Login.vue')},
     {path:'/register',name:'Register',component:() => import('../views/Register.vue')},
     {
-      path:'/dashboard',name:'Dashboard',component:Dashboard,
+      path:'/dashboard',component:Dashboard,
       children:[
         {path:'/',name:'Dashboard_Index',component:() => import('../views/dashboard/Index.vue')},
         {path:'createprofile',name:'CreateProfile',component:() => import('../views/dashboard/CreateProfile.vue')},
@@ -30,6 +29,8 @@ const route = new Router({
         {path:'addskill',name:'AddSkill',component:() => import('../views/dashboard/AddSkill.vue')},
         {path:'addreward',name:'AddReward',component:() => import('../views/dashboard/AddReward.vue')},
         {path:'setting',name:'Setting',component:() => import('../views/dashboard/Setting.vue')},
+        {path:'resume',name:'Resume',component:() => import('../views/dashboard/Resume.vue')},
+        {path:'resumeShow',name:"ResumeShow",component:() => import('../views/ResumeShow.vue')},
         {path:'introduce',name:'Introduce',component:() => import('../views/dashboard/Introduce.vue')},
         {path:'contactus',name:'ContactUs',component:() => import('../views/dashboard/ContactUs.vue')}
       ]
@@ -37,7 +38,7 @@ const route = new Router({
     {path:'/profile/:handle',name:'Profile',component:Profile},
     {path:'/profiles',name:'Profiles',component:Profiles},
     {path:'/forum',name:'Forum',component:Forum},
-    {path:'/forum/:id',name:'Post',component:() => import('../views/Forum/Post.vue')}
+    {path:'/forum/:id',name:'Post',component:() => import('../views/Forum/Post.vue')},
   ]
 });
 
