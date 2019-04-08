@@ -17,7 +17,7 @@ function endLoading(){
   loading.close();
 }
 
-axios.defaults.timeout = 6000; // 请求超时
+// axios.defaults.timeout = 6000; // 请求超时
 
 // 请求拦截 设置统一的 header
 axios.interceptors.request.use(config => {
@@ -32,13 +32,14 @@ axios.interceptors.response.use(config => {
   return config;
 },error => {
   endLoading();
-  Message.error(error.response.data);
   let { status } = error.response;
   if(status == 401){
     Message.error("token失效，请重新登录！");
     localStorage.removeItem('eleToken');
     store.dispatch('clearCurrentState');
     router.push('/login');
+  }else{
+    Message.error(error.response.data);
   }
   return Promise.reject(error);
 });

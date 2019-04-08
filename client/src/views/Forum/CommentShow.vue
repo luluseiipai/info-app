@@ -78,6 +78,17 @@ export default {
 }
 </script>
 
+<style>
+.postTitle .ql-container.ql-snow{
+  border:0px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 8px;
+}
+.commentShow .ql-container.ql-snow{
+  border-radius: 8px;
+}
+</style>
+
 <style scoped>
 .commentShow{
   width: 100%;

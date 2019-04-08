@@ -271,7 +271,7 @@ router.delete('/reward/:r_id',passport.authenticate('jwt',{session:false}),(req,
     .catch(err => res.status(400).json('oops,something got wrong'));
 });
 
-// $route  delete /api/profiles/:id
+// $route  DELETE /api/profiles/:id
 // @desc   删除个人用户
 // @access private
 router.delete('/',passport.authenticate('jwt',{session:false}),(req,res) => {
@@ -283,6 +283,22 @@ router.delete('/',passport.authenticate('jwt',{session:false}),(req,res) => {
       });
   })
   .catch(err => res.status(400).json('oops,something got wrong'));
+});
+
+// $route  DELETE /api/profiles/all
+// @desc   返回所有用户信息
+// @access public
+router.delete('/:id',passport.authenticate('jwt',{session:false}),(req,res) => {
+  if(req.user.identity !== 'teacher'){
+    res.status(400).json('你没有该权限')
+  }
+  PROFILE.findOneAndRemove({user:req.params.id})
+    .then(() => {
+      USER.findOneAndRemove({_id:req.params.id})
+        .then(() => {
+          res.status(200).json('delete complete');
+        })
+    }).catch(err => res.status(400).json('oops,something got wrong'));
 });
 
 module.exports = router;

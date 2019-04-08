@@ -11,11 +11,17 @@ import router from './route';
 import store from './store';
 import axios from './utils/http';
 
+// 重置css样式
 import '../static/css/reset.css';
 
+// 字体库
 import '../static/font-awesome/css/font-awesome.min.css';
 
+
+// 富文本编辑器
 import VueClipboard from 'vue-clipboard2';
+import htmlToPDF from './views/dashboard/utils/htmlToPDF';
+Vue.use(htmlToPDF);
 
 Vue.use(VueClipboard)
 

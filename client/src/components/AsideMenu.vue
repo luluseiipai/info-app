@@ -71,10 +71,16 @@
                 <span slot="title">设置</span>
               </el-menu-item>
             </router-link>
-            <router-link :to="{name: 'Resume'}">
+            <router-link v-if="user.identity !== 'teacher'" :to="{name: 'Resume'}">
               <el-menu-item index='dashboard/resume'>
                 <i class="fa fa-file-pdf-o"></i>
                 <span slot="title">简历</span>
+              </el-menu-item>
+            </router-link>
+            <router-link v-if="user.identity === 'teacher'" :to="{name: 'Manager'}">
+              <el-menu-item index='dashboard/manager'>
+                <i class="fa fa-exchange"></i>
+                <span slot="title">学生管理</span>
               </el-menu-item>
             </router-link>
           </el-submenu>

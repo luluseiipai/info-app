@@ -23,7 +23,13 @@
           align='center'
           width='100'>
           <template slot-scope="scope">
-            <el-tag>{{scope.row.proficient}}</el-tag>
+            <el-progress 
+              type="circle" 
+              :percentage="(parseInt(scope.row.proficient) * 20)" 
+              status="text"
+              :width="50">
+              {{proficientTransform(scope.row.proficient)}}
+            </el-progress>
           </template>
         </el-table-column>
         <el-table-column 
@@ -67,10 +73,33 @@ export default {
           this.$message.error(err.response.data);
         })
       }).catch(()=>{});
+    },
+    proficientTransform2(val){
+      switch (val) {
+        case '1':
+          return '了解';
+          break;
+        case '2':
+          return '入门';
+          break;
+        case '3':
+          return '熟悉';
+          break;
+        case '4':
+          return '熟练';
+          break;
+        case '5':
+          return '精通';
+          break;
+      }
     }
   },
-  components:{
-    
+  computed:{
+    proficientTransform(){
+      return function(val){
+        return this.proficientTransform2(val);
+      }
+    }
   }
 }
 </script>

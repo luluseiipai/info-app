@@ -132,6 +132,31 @@ const profileSchema = new Schema({
       }
     }
   ],
+  projects:[ // 项目经验
+    {
+      projectName:{ // 项目名称
+        type: String,
+        required: true
+      },
+      position:{ // 担任位置
+        type: String,
+        required: true
+      },
+      projectDesc:{ // 项目描述
+        type: String
+      },
+      charge:{ // 负责内容
+        type: String
+      },
+      from:{ // 开始时间
+        type: String,
+        required:true
+      },
+      to:{ // 结束时间
+        type: String
+      }
+    }
+  ],
   link:{ // 其他联系方式
     wechat:{ // 微信
       type:String

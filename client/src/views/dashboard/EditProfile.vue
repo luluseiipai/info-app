@@ -33,7 +33,12 @@
                 {{age}}
               </el-form-item>
               <el-form-item label="位置:" prop="location">
-                <el-cascader class="location" :options="options" v-model="ruleForm.location"  @active-item-change="handleChange" placeholder="请选择城市" :props="props"></el-cascader>
+                <el-cascader class="location" 
+                :options="options" 
+                v-model="ruleForm.location"  
+                @active-item-change="handleChange" 
+                placeholder="请选择城市" 
+                :props="props"></el-cascader>
               </el-form-item>
               <el-form-item label="状态:" prop="status">
                 <el-select v-model="ruleForm.status" placeholder="请选择">

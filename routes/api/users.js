@@ -62,13 +62,13 @@ router.post('/login',(req,res)=>{
         bcrypt.compare(req.body.password,user.password)
           .then(isMatch => {
             if(isMatch){
-              let rule = {
+              let rule = { // token中信息
                 id: user.id,
                 avatar: user.avatar,
                 username: user.username,
                 identity: user.identity
               };
-              jwt.sign(rule,key,{expiresIn:7200},(err,token) => {
+              jwt.sign(rule,key,{expiresIn:86400},(err,token) => { // 过期时间 一天
                 if(err) throw err;
                 res.status(200).json({
                   success: true,

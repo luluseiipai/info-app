@@ -27,9 +27,9 @@ export default {
         "该作品的有Token权限认证，请求响应拦截，token过期处理，常用组件封装，一键生成简历为pdf文件等功能",
         "本作品为本人<span style='font-weight:bold;color: #303133;'>曲华俊</span>设计的毕业设计作品<span style='font-weight:bold;color: #303133;'>大学生个人信息管理系统</span>，希望我开发的这款作品能够在应届毕业生的求职路上搭一把手。",
         "前端 -- 技术栈 & 插件：",
-        "HTML(5)、CSS(3)、Javascript(es6&7)、Vue2.x、Vue-router、Vuex、Vue-cli、axios、webpack、git、jwt-decode、echarts、element-ui、vue-clipboard2、vue-quill-editor、vue-canvas-nest",
+        "HTML(5)、CSS(3)、Javascript(es6&7)、Vue-cli2.x、Webpack、Vue2.x、Vue-router、Vuex、Vue-cli、axios、webpack、git、jwt-decode、echarts、jspdf、html2canvas、element-ui、vue-clipboard2、vue-quill-editor、vue-canvas-nest",
         "后端 -- 技术栈 & 插件：",
-        "node.js、express、body-parser、concurrently、gravatar、jsonwebtoken、passport、passport-jwt",
+        "node.js、express、body-parser、concurrently、gravatar、jsonwebtoken、passport、passport-jwt、bcrypt、nodemon",
         "数据库：",
         "mongoose--存储于<a href='https://mlab.com/welcome' style='text-decoration:underline;color:#909399;'>mlab</a>"
       ]
