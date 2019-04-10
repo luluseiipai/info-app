@@ -1,8 +1,8 @@
 # Stu-Info-m
 
 > 大学生个人信息管理系统
-> 基于Vue.js2.X + Node.js
-> element-ui + express
+>> 基于Vue.js2.X + Node.js
+>>> element-ui + express
 
 ## Build Setup
 
