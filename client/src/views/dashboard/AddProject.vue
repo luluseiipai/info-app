@@ -1,34 +1,39 @@
 <template>
-  <div class="addExperience">
+  <div class="addProject">
     <div class="container">
       <div class='bread'>
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ name:'Dashboard_Index' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item>用户配置</el-breadcrumb-item>
-          <el-breadcrumb-item>添加工作经历</el-breadcrumb-item>
+          <el-breadcrumb-item>添加项目经历</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <el-row>
         <el-col class='ml-10p' :lg="8" :md="12" :sm="12" :xs="12">
-          <div class="title">添加工作经历</div>
+          <div class="title">添加项目经历</div>
           <div class="tips">*为必填</div>
           <el-col :span="24" class='formBar'>
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="ruleForm">
-              <el-form-item label="头衔:" prop="title">
-                <el-input v-model="ruleForm.title" autocomplete="off" placeholder="请输入职位头衔"></el-input>
+              <el-form-item label="项目名称:" prop="projectName">
+                <el-input v-model="ruleForm.projectName" placeholder="请输入项目名称"></el-input>
               </el-form-item>
-              <el-form-item label="公司:" prop="company">
-                <el-input v-model="ruleForm.company" autocomplete="off" placeholder="请输入公司名"></el-input>
+              <el-form-item label="担任位置:" prop="position">
+                <el-input v-model="ruleForm.position" placeholder="请输入项目担任的位置"></el-input>
               </el-form-item>
-              <el-form-item label="具体地址:" prop="location">
-                <el-input v-model="ruleForm.location" autocomplete="off" placeholder="请输入公司具体地址"></el-input>
-              </el-form-item>
-              <el-form-item label="描述:" prop="description">
+              <el-form-item label="项目描述:" prop="projectDesc">
                 <el-input
                   type="textarea"
                   :rows="2"
-                  placeholder="请输入内容"
-                  v-model="ruleForm.description">
+                  placeholder="请描述项目详情"
+                  v-model="ruleForm.projectDesc">
+                </el-input>
+              </el-form-item>
+              <el-form-item label="负责内容:" prop="charge">
+                <el-input
+                  type="textarea"
+                  :rows="2"
+                  placeholder="请输入你个人负责的内容"
+                  v-model="ruleForm.charge">
                 </el-input>
               </el-form-item>
               <el-form-item label="开始时间:" prop="from">
@@ -69,7 +74,7 @@
 
 <script>
 export default {
-  name: 'addExperience',
+  name: 'addProject',
   data(){
     let rankCheck = (rule, value, callback) => {
       if(value === ''){
@@ -88,25 +93,22 @@ export default {
     return {
       time:[],
       ruleForm:{
-        title:'',
-        company:'',
-        location:'',
+        projectName:'',
+        position:'',
+        projectDesc:'',
+        charge:'',
         from:'',
-        to:'',
-        description:''
+        to:''
       },
       rules:{
-        title:[
-          {required:true,message:'头衔不能为空',trigger:'blur'}
+        projectName:[
+          {required:true,message:'项目名称不能为空',trigger:'blur'}
         ],
-        company:[
-          {required:true,message:'公司名不能为空',trigger:'blur'}
-        ],
-        location:[
-          {required:true,message:'地址不能为空',trigger:'blur'}
+        position:[
+          {required:true,message:'担任位置不能为空',trigger:'blur'}
         ],
         from:[
-          {required:true,message:'时间不能为空',trigger:'blur'}
+          {required:true,message:'开始时间不能为空',trigger:'blur'}
         ]
       },
       untilNow: false
@@ -128,11 +130,14 @@ export default {
           if(this.untilNow){
             this.ruleForm.to = '至今';
           }
-          this.$axios.post('/api/profiles/experience',this.ruleForm)
+          if(!this.ruleForm.to){
+            this.ruleForm.to = 'unknow';
+          }
+          this.$axios.post('/api/profiles/project',this.ruleForm)
             .then(res => {
               // console.log(res)
               this.$message({
-                message:'新增履历成功!',
+                message:'新增项目经历成功!',
                 type:'success'
               });
               this.$emit('update');

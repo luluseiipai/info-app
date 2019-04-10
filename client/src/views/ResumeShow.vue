@@ -102,6 +102,32 @@
             </li>
           </ul>
         </div>
+        <!-- 项目经历 -->
+        <div v-if="data.projects && data.projects.length > 0" class="project bar"
+          :style="`border-top:1px solid ${color}`">
+          <div class="title"
+          :style="`border-left:4px solid ${color}`">项目经历</div>
+          <ul class="wrap">
+            <li class="item"
+            v-for="(item, index) in data.projects" :key="index">
+              <h1 class="title">
+                {{item.projectName}}
+                <span class="time">{{item.from}} - {{item.to}}</span>
+              </h1>
+              <div class="content">
+                <div class="row row-sec">
+                  <span class="title">{{item.position}}</span>
+                </div>
+                <div class="row">
+                  <span class="location">负责内容：{{item.charge}}</span>
+                </div>
+                <div class="row">
+                  <p class="desc">项目描述： {{item.projectDesc}}</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <!-- 技能/爱好 -->
         <div v-if="data.skills && data.skills.length > 0" class="skills bar"
           :style="`border-top:1px solid ${color}`">

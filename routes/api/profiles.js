@@ -222,7 +222,46 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
 // @desc   添加项目经历
 // @access private
 router.post('/project',passport.authenticate('jwt',{session:false}),(req,res) => {
-  res.json({msg:"project work"});
+  PROFILE.findOne({user:req.user.id})
+    .then(profile => {
+      let newProject = {
+        projectName:req.body.projectName,
+        position:req.body.position,
+        from:req.body.from
+      }
+      if(req.body.projectDesc) newProject.projectDesc = req.body.projectDesc;
+      if(req.body.charge) newProject.charge = req.body.charge;
+      if(req.body.to) newProject.to = req.body.to;
+      profile.projects.unshift(newProject);
+      profile.save().then(profile => res.status(200).json(profile));
+    }).catch(err => res.status(400).json('oops,something got wrong'));
+});
+
+// $route  POST /api/profiles/edit_project/:pj_id
+// @desc   修改工作经历
+// @access private
+router.post('/edit_project/:pj_id',passport.authenticate('jwt',{session:false}),(req,res) => {
+  PROFILE.findOne({user:req.user.id})
+    .then(profile => {
+      let index = profile.projects.map(item => item.id).indexOf(req.params.pj_id);
+      profile.projects.splice(index,1,req.body);
+      PROFILE.findOneAndUpdate({user:req.user.id},{$set:profile},{new:true})
+      .then(profile => res.status(200).json(profile));
+    })
+    .catch(err => res.status(400).json('oops,something got wrong'));
+});
+
+// $route  DELETE /api/profiles/project/:pj_id
+// @desc   删除指定的工作经历
+// @access private
+router.delete('/project/:pj_id',passport.authenticate('jwt',{session:false}),(req,res) => {
+  PROFILE.findOne({user:req.user.id})
+    .then(profile => {
+      let removeIndex = profile.projects.map(item => item.id).indexOf(req.params.pj_id);
+      profile.projects.splice(removeIndex,1);
+      profile.save().then(profile => res.status(200).json(profile));
+    })
+    .catch(err => res.status(400).json('oops,something got wrong'));
 });
 
 // $route  POST /api/profiles/addskill

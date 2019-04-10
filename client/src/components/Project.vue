@@ -1,9 +1,9 @@
 <template>
-  <div class="experience">
-    <el-tag class='title' type='primary'>工作经历</el-tag>
+  <div class="project">
+    <el-tag class='title' type='primary'>项目经历</el-tag>
     <div class="table-container">
       <el-table
-        :data='experience'
+        :data='projects'
         stripe
         border
         style='width:100%'>
@@ -14,22 +14,35 @@
           width='100'>
         </el-table-column>
         <el-table-column
-          prop='title'
-          label='头衔'
+          prop='projectName'
+          label='项目名称'
           align='center'
           width='150'>
         </el-table-column>
         <el-table-column
-          prop='company'
-          label='公司名'
+          prop='position'
+          label='担任位置'
           align='center'
           width='200'>
         </el-table-column>
         <el-table-column
-          prop='location'
-          label='具体地址'
+          label='项目描述'
           align='center'
           width='300'>
+          <template slot-scope="scope">
+            <i class="el-icon-document"></i>
+            <span>{{scope.row.projectDesc}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          :show-overflow-tooltip="true"
+          label='负责内容'
+          align='center'
+          width='300'>
+          <template slot-scope="scope">
+            <i class="el-icon-document"></i>
+            <span>{{scope.row.charge}}</span>
+          </template>
         </el-table-column>
         <el-table-column
           label='时间'
@@ -38,16 +51,6 @@
           <template slot-scope="scope">
             <i class="el-icon-time"></i>
             <span>{{scope.row.from}} - {{scope.row.to}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          :show-overflow-tooltip="true"
-          label='描述'
-          align='center'
-          width='300'>
-          <template slot-scope="scope">
-            <i class="el-icon-document"></i>
-            <span>{{scope.row.description}}</span>
           </template>
         </el-table-column>
         <el-table-column 
@@ -71,14 +74,14 @@
         </el-table-column>
       </el-table>
     </div>
-    <app-experienceDialog :show="show" :formData="formData" @close='show = false'></app-experienceDialog>
+    <app-projectDialog :show="show" :formData="formData" @close='show = false'></app-projectDialog>
   </div>
 </template>
 
 <script>
-import ExperienceDialog from '../components/ExperienceDialog';
+import ProjectDialog from './ProjectDialog'
 export default {
-  name: 'experience',
+  name: 'project',
   data(){
     return {
       formData:{},
@@ -86,16 +89,16 @@ export default {
     }
   },
   props:{
-    experience: Array
+    projects: Array
   },
   methods:{
     handleEdit(index,row){
       this.show = true;
       this.formData = {
-        title:row.title,
-        company:row.company,
-        location:row.location,
-        description:row.description,
+        projectName:row.projectName,
+        position:row.position,
+        projectDesc:row.projectDesc,
+        charge:row.charge,
         from:row.from,
         to:row.to,
         id:row._id
@@ -104,9 +107,9 @@ export default {
     handleDelete(index,row){
       this.$confirm('确认删除？')
       .then(() => {
-        this.$axios.delete(`/api/profiles/experience/${row._id}`)
+        this.$axios.delete(`/api/profiles/project/${row._id}`)
         .then(res => {
-          this.$message('单个个人履历删除成功');
+          this.$message.success('指定项目经历删除成功');
           this.$emit('update');
         }).catch(err => {
           this.$message.error(err.response.data);
@@ -115,7 +118,7 @@ export default {
     }
   },
   components:{
-    'app-experienceDialog':ExperienceDialog
+    'app-projectDialog':ProjectDialog
   }
 }
 </script>

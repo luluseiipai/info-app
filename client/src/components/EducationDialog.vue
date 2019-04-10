@@ -177,6 +177,10 @@ export default {
   color: #606266;
   font-size: 14px;
 }
+.tips{
+  color: #909399;
+  margin: 20px 0;
+}
 @media screen and (max-width: 992px){
   
 }
