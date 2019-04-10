@@ -17,14 +17,17 @@ function endLoading(){
   loading.close();
 }
 
-// axios.defaults.timeout = 6000; // 请求超时
+axios.defaults.timeout = 6000; // 请求超时
 
 // 请求拦截 设置统一的 header
 axios.interceptors.request.use(config => {
   startLoading();
   if(localStorage.eleToken) config.headers.Authorization = localStorage.eleToken;
   return config;
-},error => Promise.reject(error));
+},error => {
+  Message.error(error.response.data);
+  return Promise.reject(error)
+});
 
 // 响应拦截
 axios.interceptors.response.use(config => {

@@ -218,6 +218,13 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
     .catch(err => res.status(400).json('oops,something got wrong'));
 });
 
+// $route  POST /api/profiles/project
+// @desc   添加项目经历
+// @access private
+router.post('/project',passport.authenticate('jwt',{session:false}),(req,res) => {
+  res.json({msg:"project work"});
+});
+
 // $route  POST /api/profiles/addskill
 // @desc   添加个人技能
 // @access private
