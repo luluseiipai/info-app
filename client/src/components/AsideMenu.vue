@@ -29,32 +29,38 @@
             </template>
             <router-link :to="{name:'EditProfile'}">
               <el-menu-item index='dashboard/editprofile'>
-                <i class="el-icon-edit"></i>
+                <i class="fa fa-edit"></i>
                 <span slot="title">编辑个人信息</span>
               </el-menu-item>
             </router-link>
             <router-link :to="{name:'AddEducation'}">
               <el-menu-item index="dashboard/addeducation">
-                <i class="el-icon-circle-plus-outline"></i>
+                <i class="fa fa-university"></i>
                 <span slot="title">添加教育经历</span>
               </el-menu-item>
             </router-link>
             <router-link :to="{name:'AddExperience'}">
               <el-menu-item index="dashboard/addexperience">
-                <i class="el-icon-circle-plus-outline"></i>
-                <span slot="title">添加个人履历</span>
+                <i class="fa fa-code-fork"></i>
+                <span slot="title">添加工作经历</span>
+              </el-menu-item>
+            </router-link>
+            <router-link :to="{name:'AddProject'}">
+              <el-menu-item index="dashboard/addproject">
+                <i class="fa fa-file"></i>
+                <span slot="title">添加项目经历</span>
               </el-menu-item>
             </router-link>
             <el-menu-item-group title="额外">
               <router-link :to="{name:'AddSkill'}">
                 <el-menu-item index="dashboard/addskill">
-                  <i class="el-icon-circle-plus-outline"></i>
+                  <i class="fa fa-gift"></i>
                   <span slot="title">添加个人技能</span>
                 </el-menu-item>
               </router-link>
               <router-link :to="{name:'AddReward'}">
                 <el-menu-item index="dashboard/addreward">
-                  <i class="el-icon-circle-plus-outline"></i>
+                  <i class="fa fa-trophy"></i>
                   <span slot="title">添加获奖经历</span>
                 </el-menu-item>
               </router-link>

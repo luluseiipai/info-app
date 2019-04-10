@@ -15,13 +15,16 @@
         <el-tab-pane label="教育经历" name="first">
           <app-education @update="refresh" :education='profile.education'></app-education>
         </el-tab-pane>
-        <el-tab-pane label="个人履历" name="second">
+        <el-tab-pane label="工作经历" name="second">
           <app-experience @update="refresh" :experience='profile.experience'></app-experience>
         </el-tab-pane>
-        <el-tab-pane label="获奖经历" name="third">
+        <el-tab-pane label="项目经历" name="third">
+          <app-project @update="refresh" :projects='profile.projects'></app-project>
+        </el-tab-pane>
+        <el-tab-pane label="获奖经历" name="four">
           <app-reward @update="refresh" :rewards='profile.rewards'></app-reward>
         </el-tab-pane>
-        <el-tab-pane label="技能掌握" name="four">
+        <el-tab-pane label="技能掌握" name="five">
           <app-skill @update="refresh" :skills='profile.skills'></app-skill>
         </el-tab-pane>
       </el-tabs>
@@ -35,6 +38,7 @@
 <script>
 import Education from '../../components/Education';
 import Experience from '../../components/Experience';
+import Project from '../../components/Project';
 import Reward from '../../components/Reward';
 import Skill from '../../components/Skill';
 export default {
@@ -53,6 +57,7 @@ export default {
   components:{
     'app-education':Education,
     'app-experience':Experience,
+    'app-project':Project,
     'app-reward':Reward,
     'app-skill':Skill
   },

@@ -26,6 +26,7 @@ const route = new Router({
         {path:'editprofile',name:'EditProfile',component:() => import('../views/dashboard/EditProfile.vue')},
         {path:'addeducation',name:'AddEducation',component:() => import('../views/dashboard/AddEducation.vue')},
         {path:'addexperience',name:'AddExperience',component:() => import('../views/dashboard/AddExperience.vue')},
+        {path:'addproject',name:'AddProject',component:() => import('../views/dashboard/AddProject.vue')},
         {path:'addskill',name:'AddSkill',component:() => import('../views/dashboard/AddSkill.vue')},
         {path:'addreward',name:'AddReward',component:() => import('../views/dashboard/AddReward.vue')},
         {path:'setting',name:'Setting',component:() => import('../views/dashboard/Setting.vue')},

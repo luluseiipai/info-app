@@ -1,28 +1,33 @@
 z<template>
   <div class="educationDialog">
     <el-dialog 
-      title="编辑工作经历"
+      title="编辑项目经历"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
       :modal-append-to-body="false"
       :visible.sync="show">
       <div class="tips">*为必填</div>
       <el-form :model="formData" status-icon :rules="form_rules" ref="form" label-width="100px">
-        <el-form-item label="头衔:" prop="title">
-          <el-input v-model="formData.title" autocomplete="off" placeholder="请输入职位头衔"></el-input>
+        <el-form-item label="项目名称:" prop="projectName">
+          <el-input v-model="formData.projectName" placeholder="请输入项目名称"></el-input>
         </el-form-item>
-        <el-form-item label="公司:" prop="company">
-          <el-input v-model="formData.company" autocomplete="off" placeholder="请输入公司名"></el-input>
+        <el-form-item label="担任位置:" prop="position">
+          <el-input v-model="formData.position" placeholder="请输入担任位置"></el-input>
         </el-form-item>
-        <el-form-item label="具体地址:" prop="location">
-          <el-input v-model="formData.location" autocomplete="off" placeholder="请输入公司具体地址"></el-input>
-        </el-form-item>
-        <el-form-item label="描述:" prop="description">
+        <el-form-item label="项目描述:" prop="projectDesc">
           <el-input
             type="textarea"
             :rows="2"
             placeholder="请输入内容"
-            v-model="formData.description">
+            v-model="formData.projectDesc">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="负责内容:" prop="charge">
+          <el-input
+            type="textarea"
+            :rows="2"
+            placeholder="请输入你负责的内容"
+            v-model="formData.charge">
           </el-input>
         </el-form-item>
         <el-form-item label="开始时间:" prop="from">
@@ -69,17 +74,14 @@ export default {
   data(){
     return {
       form_rules:{
-        title:[
-          {required:true,message:'头衔不能为空',trigger:'blur'}
+        projectName:[
+          {required:true,message:'项目名称不能为空',trigger:'blur'}
         ],
-        company:[
-          {required:true,message:'公司名不能为空',trigger:'blur'}
-        ],
-        location:[
-          {required:true,message:'地址不能为空',trigger:'blur'}
+        position:[
+          {required:true,message:'担任位置不能为空',trigger:'blur'}
         ],
         from:[
-          {required:true,message:'时间不能为空',trigger:'blur'}
+          {required:true,message:'开始时间不能为空',trigger:'blur'}
         ]
       },
       untilNow: false
@@ -89,7 +91,7 @@ export default {
     onSubmit(formName){
       this.$refs[formName].validate(valid => {
         if(valid){
-          this.$axios.post(`/api/profiles/edit_experience/${this.formData.id}`,this.formData)
+          this.$axios.post(`/api/profiles/edit_project/${this.formData.id}`,this.formData)
             .then((res) => {
               this.$message({
                 message:"数据编辑成功",
