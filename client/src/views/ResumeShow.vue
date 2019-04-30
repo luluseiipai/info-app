@@ -1,7 +1,7 @@
 <template>
   <div class="resumeShow">
-    <div class="row" id="pdfDom" style="padding-top:50px;background-color:#fff;">
-       <div class="container">
+    <div class="row">
+       <div class="container" id="pdfDom" style="padding-top:30px;background-color:#fff;">
         <!-- 主要信息 -->
         <div class="primary-info">
           <div class="info">

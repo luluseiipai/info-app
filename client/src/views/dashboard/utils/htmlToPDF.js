@@ -66,6 +66,7 @@ export default{
         let imgHeight = 592.28 / contentWidth * contentHeight
         let pageData = canvas.toDataURL('image/jpeg', 1.0)
         let PDF = new JsPDF('', 'pt', 'a4')
+        PDF.internal.scaleFactor = 1.33;
         if (leftHeight < pageHeight) {
           PDF.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight)
         } else {
