@@ -69,10 +69,10 @@
               </el-form-item>
               <div class="linkGroup" v-if="linkSwitch">
                 <el-form-item label="QQ:" prop="qq">
-                  <el-input v-if="ruleForm.link" v-model.number="ruleForm.link.qq" placeholder="请输入QQ号"></el-input>
+                  <el-input v-if="ruleForm.link" v-model.number="ruleForm.qq" placeholder="请输入QQ号"></el-input>
                 </el-form-item>
                 <el-form-item label="Wechat:" prop="wechat">
-                  <el-input v-if="ruleForm.link" v-model="ruleForm.link.wechat" placeholder="请输入您的微信号"></el-input>
+                  <el-input v-if="ruleForm.link" v-model="ruleForm.wechat" placeholder="请输入您的微信号"></el-input>
                 </el-form-item>
               </div>
               <el-form-item>
@@ -164,9 +164,10 @@ export default {
     submitForm(form){
       this.$refs[form].validate(valid => {
         if(valid){
+            console.log(this.ruleForm)
           this.$axios.post('/api/profiles',this.ruleForm)
             .then(res => {
-              // console.log(res)
+              console.log(res)
               this.$message({
                 message:'个人信息修改成功!',
                 type:'success'
@@ -186,6 +187,12 @@ export default {
           this.$store.dispatch('setProfile',profile);
           if(profile.link.qq || profile.link.wechat){
             this.linkSwitch = true;
+            if(profile.link.qq){
+                profile.qq = profile.link.qq;
+            }
+            if(profile.link.wechat){
+                profile.wechat = profile.link.wechat;
+            }
           }
           this.ruleForm = profile;
         })
