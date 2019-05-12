@@ -8,10 +8,16 @@
             <el-col :span="24">
               <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="loginForm">
                 <el-form-item label="邮箱:" prop="email">
-                <el-input type='email' v-model="loginForm.email" placeholder="请输入邮箱" autocomplete="off"></el-input>
+                <el-input type='email' v-model="loginForm.email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
                 <el-form-item label="密码:" prop="password">
-                  <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" autocomplete="off"></el-input>
+                  <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
+                </el-form-item>
+                <el-form-item label="验证码" prop="identifyStr">
+                    <div class="code" @click="refreshCode">
+                        <SIdentify :identifyCode="identifyCode"></SIdentify>
+                    </div>
+                    <el-input type='text' v-model="loginForm.identifyStr" placeholder="请输入验证码"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button id="registerBtn" type="primary" @click="submitForm('loginForm')">登录</el-button>
@@ -28,13 +34,22 @@
 
 <script>
 import jwt_decode from 'jwt-decode';
+import SIdentify from '../components/SIdentify';
 export default {
   name: 'login',
   data(){
+    let check = (rule, value, callback) => {
+      if(this.loginForm.identifyStr != this.identifyCode){
+        callback(new Error('验证码不正确'));
+      }else{
+        callback();
+      }
+    };
     return {
       loginForm:{
         email:'',
         password:'',
+        identifyStr: ''
       },
       rules:{
         email:[
@@ -43,8 +58,14 @@ export default {
         password:[
           {required:true,message:'密码不能为空',trigger:'blur'},
           {max:12,min:6,message:'密码长度不小于6且不大于12位',trigger:'blur'},
+        ],
+        identifyStr:[
+          {required:true,message:'验证码不能为空',trigger:'blur'},
+          {validator:check,trigger:'blur'}
         ]
-      }
+      },
+      identifyCode: '',
+      identifyCodes: "1234567890",
     }
   },
   methods:{
@@ -74,6 +95,21 @@ export default {
     },
     register(){
       this.$router.push('/register');
+    },
+    randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    },
+    refreshCode() {
+      this.identifyCode = "";
+      this.makeCode(this.identifyCodes, 4);
+    },
+    makeCode(o, l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.identifyCodes[
+          this.randomNum(0, this.identifyCodes.length)
+        ];
+      }
+      console.log(this.identifyCode);
     }
   },
   computed:{
@@ -85,6 +121,13 @@ export default {
         return '#67C23A'
       }
     }
+  },
+  mounted(){
+    this.identifyCode = "";
+    this.makeCode(this.identifyCodes, 4);
+  },
+  components:{
+    SIdentify
   }
 }
 </script>
@@ -118,5 +161,11 @@ h1{
   line-height: 24px;
   margin: 10px 0;
   color: #409EFF;
+}
+.code{
+    display: inline-block;
+    width: 122px;
+    height: 53px;
+    cursor: pointer;
 }
 </style>

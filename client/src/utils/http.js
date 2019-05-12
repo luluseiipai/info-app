@@ -17,7 +17,7 @@ function endLoading(){
   loading.close();
 }
 
-axios.defaults.timeout = 6000; // 请求超时
+// axios.defaults.timeout = 6000; // 请求超时
 
 // 请求拦截 设置统一的 header
 axios.interceptors.request.use(config => {
